@@ -1,4 +1,4 @@
-use serde::{Serialize, Deserialize};
+use serde::{Deserialize, Serialize};
 
 #[derive(Debug, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(tag = "type", rename_all = "lowercase", deny_unknown_fields)]
@@ -8,9 +8,7 @@ pub enum Message {
     Peers(Peers),
     GetObject(GetObject),
     IHaveObject(IHaveObject),
-    Object {
-        object: Object,
-    },
+    Object { object: Object },
     GetMempool,
     Mempool(Mempool),
     GetChainTip,
@@ -75,7 +73,6 @@ pub struct Object {
     t: String,
 }
 
-
 #[cfg(test)]
 mod test {
     use super::*;
@@ -122,9 +119,9 @@ mod test {
         let actual: Message = serde_json::from_str(data).unwrap();
         let expected = Message::Peers(Peers {
             peers: vec![
-              "dionyziz.com:18018".to_string(),
-              "138.197.191.170:18018".to_string(),
-              "[fe80::f03c:91ff:fe2c:5a79]:18018".to_string(),
+                "dionyziz.com:18018".to_string(),
+                "138.197.191.170:18018".to_string(),
+                "[fe80::f03c:91ff:fe2c:5a79]:18018".to_string(),
             ],
         });
 
@@ -140,7 +137,8 @@ mod test {
 
         let actual: Message = serde_json::from_str(data).unwrap();
         let expected = Message::GetObject(GetObject {
-            object_id: "0024839ec9632d382486ba7aac7e0bda3b4bda1d4bd79be9ae78e7e1e813ddd8".to_string(),
+            object_id: "0024839ec9632d382486ba7aac7e0bda3b4bda1d4bd79be9ae78e7e1e813ddd8"
+                .to_string(),
         });
 
         assert_eq!(actual, expected);
@@ -155,7 +153,8 @@ mod test {
 
         let actual: Message = serde_json::from_str(data).unwrap();
         let expected = Message::IHaveObject(IHaveObject {
-            object_id: "0024839ec9632d382486ba7aac7e0bda3b4bda1d4bd79be9ae78e7e1e813ddd8".to_string(),
+            object_id: "0024839ec9632d382486ba7aac7e0bda3b4bda1d4bd79be9ae78e7e1e813ddd8"
+                .to_string(),
         });
 
         assert_eq!(actual, expected);
@@ -184,11 +183,13 @@ mod test {
                 tx_ids: vec![
                     "740bcfb434c89abe57bb2bc80290cd5495e87ebf8cd0dadb076bc50453590104".to_string(),
                 ],
-                nonce: "a26d92800cf58e88a5ecf37156c031a4147c2128beeaf1cca2785c93242a4c8b".to_string(),
-                prev_id: "0024839ec9632d382486ba7aac7e0bda3b4bda1d4bd79be9ae78e7e1e813ddd8".to_string(),
+                nonce: "a26d92800cf58e88a5ecf37156c031a4147c2128beeaf1cca2785c93242a4c8b"
+                    .to_string(),
+                prev_id: "0024839ec9632d382486ba7aac7e0bda3b4bda1d4bd79be9ae78e7e1e813ddd8"
+                    .to_string(),
                 created: "1622825642".to_string(),
                 t: "003a000000000000000000000000000000000000000000000000000000000000".to_string(),
-            }
+            },
         };
 
         assert_eq!(actual, expected);
@@ -244,7 +245,8 @@ mod test {
 
         let actual: Message = serde_json::from_str(data).unwrap();
         let expected = Message::ChainTip(ChainTip {
-            block_id: "0024839ec9632d382486ba7aac7e0bda3b4bda1d4bd79be9ae78e7e1e813ddd8".to_string(),
+            block_id: "0024839ec9632d382486ba7aac7e0bda3b4bda1d4bd79be9ae78e7e1e813ddd8"
+                .to_string(),
         });
 
         assert_eq!(actual, expected);

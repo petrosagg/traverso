@@ -1,6 +1,6 @@
-use tokio::net::TcpStream;
-use tokio::io::BufReader;
 use tokio::io::AsyncBufReadExt;
+use tokio::io::BufReader;
+use tokio::net::TcpStream;
 
 use crate::message::Message;
 
